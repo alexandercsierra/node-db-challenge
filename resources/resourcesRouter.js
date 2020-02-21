@@ -12,4 +12,13 @@ router.get('/', (req, res)=>{
         })
 })
 
+router.post('/', (req, res)=>{
+    Resources.add(req.body)
+        .then(resource=>res.status(200).json(resource))
+        .catch(err=>{
+            console.log(err.message);
+            res.status(500).json({message:'error posting resource'})
+        })
+})
+
 module.exports = router;

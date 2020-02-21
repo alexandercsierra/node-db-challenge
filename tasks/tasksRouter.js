@@ -12,4 +12,13 @@ router.get('/', (req, res)=>{
         })
 })
 
+router.post('/', (req, res)=>{
+    Tasks.add(req.body)
+        .then(task=>res.status(200).json(task))
+        .catch(err=>{
+            console.log(err.message);
+            res.status(500).json({message:'error posting task'})
+        })
+})
+
 module.exports = router;
