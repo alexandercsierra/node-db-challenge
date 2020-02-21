@@ -8,7 +8,9 @@ module.exports = {
 const db = require('../data/db-config');
 
 function getTasks(){
-    return db('tasks');
+    return db('tasks')
+        .join('projects', 'tasks.project_id', 'projects.id')
+        .select('projects.name', 'projects.description as project_description', 'tasks.description')
 }
 
 function add(task){
